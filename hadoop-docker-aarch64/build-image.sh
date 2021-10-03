@@ -1,8 +1,6 @@
 #!/bin/bash
 
-echo ""
-
 echo -e "\nbuild docker hadoop image\n"
-sudo docker build -t kiwenlau/hadoop:1.0 .
+sudo docker build -f Dockerfile -t puppets/hadoop:1.0 .
 
 echo ""
