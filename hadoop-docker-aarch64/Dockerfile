@@ -14,18 +14,18 @@ RUN apt-get update && apt-get install -y openssh-server wget
 #     rm hadoop-2.7.2.tar.gz
 
 # install jdk 1.8
-RUN wget https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz && \
-    tar -xzvf jdk-8u301*.tar.gz && \
-    mv jdk1.8* /usr/local/hadoop/jdk1.8 && \
-    rm jdk-8u301*.tar.gz
+# RUN wget https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz && \
+#     tar -xzvf jdk-8u301-linux-aarch64.tar.gz && \
+#     mv jdk1.8.0_301 /usr/local/hadoop/ && \
+#     rm jdk-8u301-linux-aarch64.tar.gz
 
 ADD resources/hadoop-3.3.1-aarch64.tar.gz /usr/local/hadoop
-# ADD resources/jdk-8u301-linux-aarch64.tar.gz /usr/local/hadoop
+ADD resources/jdk-8u301-linux-aarch64.tar.gz /usr/local/hadoop
 
 RUN mv /usr/local/hadoop/hadoop-3.3.1 /usr/local/hadoop/hadoop
 
 # set environment variable
-ENV JAVA_HOME=/usr/local/hadoop/jdk1.8
+ENV JAVA_HOME=/usr/local/hadoop/jdk1.8.0_301
 ENV JRE_HOME=$JAVA_HOME/jre
 ENV CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
 ENV PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin

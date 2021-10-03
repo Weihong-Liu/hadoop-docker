@@ -11,10 +11,10 @@ git clone https://github.com/Weihong-Liu/hadoop-docker.git
 ```
 ##### 2. download Hadoop v3.3.1 aarch64 to resource directory
 
-> https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz
+> [hadoop-3.3.1-aarch64](https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz) and [JDK1.8-aarch64](https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz)
 
-将下载得到的`hadoop-3.3.1-aarch64.tar.gz`文件放入`resources`文件夹中
-
+将下载得到的`hadoop-3.3.1-aarch64.tar.gz`和`jdk-8u301-linux-aarch64.tar.gz`文件放入`resources`文件夹中
+![alt tag](image1.png)
 ##### 3. build Dockerfile
 ```
 docker build -f Dockerfile -t puppets/hadoop:1.0 .
@@ -104,3 +104,6 @@ sudo ./start-container.sh 5
 
 do 5~6 like section A
 
+#### References
+1. [银河麒麟 arm架构 ubuntu docker制作hadoop镜像](https://www.cnblogs.com/erlou96/p/13857749.html)
+2. [Run Hadoop Cluster in Docker Update](http://kiwenlau.com/2016/06/26/hadoop-cluster-docker-update-english/)
