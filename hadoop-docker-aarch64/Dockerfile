@@ -1,33 +1,37 @@
-FROM centos:7
+FROM ubuntu:14.04
 
 LABEL maintainer="puppets"
 
 WORKDIR /root
 
 # install openssh-server, openjdk and wget
-# RUN apt-get update && apt-get install -y openssh-server openjdk-7-jdk wget
-RUN yum install -y openssl openssh-server wget which java-11-openjdk
+RUN apt-get update && apt-get install -y openssh-server wget
 
-# install hadoop 2.7.2
-# RUN wget https://github.com/kiwenlau/compile-hadoop/releases/download/2.7.2/hadoop-2.7.2.tar.gz && \
+# install hadoop 3.3.1
+# RUN wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz && \
 #     tar -xzvf hadoop-2.7.2.tar.gz && \
 #     mv hadoop-2.7.2 /usr/local/hadoop && \
 #     rm hadoop-2.7.2.tar.gz
-# RUN wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz && \
-#     tar -xzvf hadoop-3.3.1-aarch64.tar.gz && \
-#     mv hadoop-3.3.1 /usr/local/hadoop && \
-#     rm hadoop-3.3.1.tar.gz
+
+# install jdk 1.8
+RUN wget https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz && \
+    tar -xzvf jdk-8u301*.tar.gz && \
+    mv jdk1.8* /usr/local/hadoop/jdk1.8 && \
+    rm jdk-8u301*.tar.gz
 
 ADD resources/hadoop-3.3.1-aarch64.tar.gz /usr/local/hadoop
-# ADD resources/jdk-8u121-linux-x64.tar.gz /usr/local/hadoop
+# ADD resources/jdk-8u301-linux-aarch64.tar.gz /usr/local/hadoop
+
+RUN mv /usr/local/hadoop/hadoop-3.3.1 /usr/local/hadoop/hadoop
 
 # set environment variable
-# ENV JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64 
-# ENV HADOOP_HOME=/usr/local/hadoop 
-# ENV PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin 
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.12.0.7-0.el7_9.aarch64
-ENV HADOOP_HOME=/usr/local/hadoop/hadoop-3.3.1
-ENV PATH=$PATH:/usr/local/hadoop/hadoop-3.3.1/bin:/usr/local/hadoop/hadoop-3.3.1/sbin 
+ENV JAVA_HOME=/usr/local/hadoop/jdk1.8
+ENV JRE_HOME=$JAVA_HOME/jre
+ENV CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
+ENV PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+
+ENV HADOOP_HOME=/usr/local/hadoop/hadoop
+ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin 
 
 # ssh without key
 RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
@@ -35,7 +39,8 @@ RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
 
 RUN mkdir -p ~/hdfs/namenode && \ 
     mkdir -p ~/hdfs/datanode && \
-    mkdir $HADOOP_HOME/logs
+    mkdir $HADOOP_HOME/logs && \
+    mkdir $HADOOP_HOME/tmp
 
 COPY config/* /tmp/
 
@@ -46,6 +51,7 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml && \
     mv /tmp/yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml && \
     mv /tmp/slaves $HADOOP_HOME/etc/hadoop/slaves && \
+    mv /tmp/workers $HADOOP_HOME/etc/hadoop/workers && \
     mv /tmp/start-hadoop.sh ~/start-hadoop.sh && \
     mv /tmp/run-wordcount.sh ~/run-wordcount.sh
 
@@ -53,6 +59,26 @@ RUN chmod +x ~/start-hadoop.sh && \
     chmod +x ~/run-wordcount.sh && \
     chmod +x $HADOOP_HOME/sbin/start-dfs.sh && \
     chmod +x $HADOOP_HOME/sbin/start-yarn.sh 
+
+RUN sed -i 1a\HDFS_DATANODE_USER=root $HADOOP_HOME/sbin/start-dfs.sh && \
+    sed -i 2a\HDFS_NAMENODE_USER=root $HADOOP_HOME/sbin/start-dfs.sh && \
+    sed -i 3a\HDFS_SECONDARYNAMENODE_USER=root $HADOOP_HOME/sbin/start-dfs.sh && \
+    sed -i 4a\YARN_RESOURCEMANAGER_USER=root $HADOOP_HOME/sbin/start-dfs.sh && \
+    sed -i 5a\YARN_NODEMANAGER_USER=root $HADOOP_HOME/sbin/start-dfs.sh && \
+    sed -i 1a\HDFS_DATANODE_USER=root $HADOOP_HOME/sbin/stop-dfs.sh && \
+    sed -i 2a\HDFS_NAMENODE_USER=root $HADOOP_HOME/sbin/stop-dfs.sh && \
+    sed -i 3a\HDFS_SECONDARYNAMENODE_USER=root $HADOOP_HOME/sbin/stop-dfs.sh && \
+    sed -i 4a\YARN_RESOURCEMANAGER_USER=root $HADOOP_HOME/sbin/stop-dfs.sh && \
+    sed -i 5a\YARN_NODEMANAGER_USER=root $HADOOP_HOME/sbin/stop-dfs.sh && \
+    sed -i 1a\YARN_RESOURCEMANAGER_USER=root $HADOOP_HOME/sbin/start-yarn.sh && \
+    sed -i 2a\HADOOP_SECURE_DN_USER=yarn $HADOOP_HOME/sbin/start-yarn.sh && \
+    sed -i 3a\YARN_NODEMANAGER_USER=root $HADOOP_HOME/sbin/start-yarn.sh && \
+    sed -i 1a\YARN_RESOURCEMANAGER_USER=root $HADOOP_HOME/sbin/stop-yarn.sh && \
+    sed -i 2a\HADOOP_SECURE_DN_USER=yarn $HADOOP_HOME/sbin/stop-yarn.sh && \
+    sed -i 3a\YARN_NODEMANAGER_USER=root $HADOOP_HOME/sbin/stop-yarn.sh
+
+RUN cat /tmp/profile >> /etc/profile && \
+    rm -rf $HADOOP_HOME/share/doc
 
 # format namenode
 RUN $HADOOP_HOME/bin/hdfs namenode -format

@@ -11,6 +11,6 @@
 
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>/usr/local/hadoop/hadoop-2.6.5/tmp</value>
+        <value>/usr/local/hadoop/hadoop/tmp</value>
     </property>
 </configuration>

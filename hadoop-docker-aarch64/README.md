@@ -1,36 +1,35 @@
-## Run Hadoop Cluster within Docker Containers
+## Run Hadoop v3.3.1 within Docker Containers
 
-- Blog: [Run Hadoop Cluster in Docker Update](http://kiwenlau.com/2016/06/26/hadoop-cluster-docker-update-english/)
-- 博客: [基于Docker搭建Hadoop集群之升级版](http://kiwenlau.com/2016/06/12/160612-hadoop-cluster-docker-update/)
+`环境：MacOS BigSur`
 
-
-![alt tag](https://raw.githubusercontent.com/kiwenlau/hadoop-cluster-docker/master/hadoop-cluster-docker.png)
+`机型：Mac mini (M1, 2020)`
 
 
-### 3 Nodes Hadoop Cluster
-
-##### 1. pull docker image
-
+##### 1. clone github repository
 ```
-sudo docker pull kiwenlau/hadoop:1.0
+git clone https://github.com/Weihong-Liu/hadoop-docker.git
+```
+##### 2. download Hadoop v3.3.1 aarch64 to resource directory
+
+> https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz
+
+将下载得到的`hadoop-3.3.1-aarch64.tar.gz`文件放入`resources`文件夹中
+
+##### 3. build Dockerfile
+```
+docker build -f Dockerfile -t puppets/hadoop:1.0 .
 ```
 
-##### 2. clone github repository
-
-```
-git clone https://github.com/kiwenlau/hadoop-cluster-docker
-```
-
-##### 3. create hadoop network
+##### 4. create hadoop network
 
 ```
 sudo docker network create --driver=bridge hadoop
 ```
 
-##### 4. start container
+##### 5. start container
 
 ```
-cd hadoop-cluster-docker
+cd hadoop-docker
 sudo ./start-container.sh
 ```
 
@@ -45,13 +44,13 @@ root@hadoop-master:~#
 - start 3 containers with 1 master and 2 slaves
 - you will get into the /root directory of hadoop-master container
 
-##### 5. start hadoop
+##### 6. start hadoop
 
 ```
 ./start-hadoop.sh
 ```
 
-##### 6. run wordcount
+##### 7. run wordcount
 
 ```
 ./run-wordcount.sh
@@ -71,6 +70,13 @@ Docker    1
 Hadoop    1
 Hello    2
 ```
+
+##### 8. WebUI
+- http://localhost:9870/
+- http://localhost:8088/
+
+
+
 
 ### Arbitrary size Hadoop cluster
 

@@ -14,7 +14,11 @@
         <name>dfs.replication</name>
         <value>2</value>
     </property>
-    <property>
+    <!-- <property>
+        <name>dfs.namenode.http.address</name>
+        <value>hadoop-master:50070</value>
+    </property> -->
+    <!-- <property>
         <name>dfs.namenode.secondary.http-address</name>
         <value>hadoop-master:50090</value>
     </property>
@@ -25,5 +29,5 @@
     <property>
         <name>dfs.webhdfs.enabled</name>
         <value>true</value>
-    </property>
+    </property> -->
 </configuration>
