@@ -106,6 +106,6 @@ sudo ./start-container.sh 5
 
 do 5~6 like section A
 
-#### References
+## References
 1. [银河麒麟 arm架构 ubuntu docker制作hadoop镜像](https://www.cnblogs.com/erlou96/p/13857749.html)
 2. [Run Hadoop Cluster in Docker Update](http://kiwenlau.com/2016/06/26/hadoop-cluster-docker-update-english/)
