@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hadoop-master:9000/</value>
+    </property>
+    <property>
+        <name>io.file.buffer.size</name>
+        <value>131072</value>
+    </property>
+
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/usr/local/hadoop/hadoop/tmp</value>
+    </property>
+</configuration>

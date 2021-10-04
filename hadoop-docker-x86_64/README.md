@@ -1,8 +1,8 @@
 ## Run Hadoop v3.3.1 within Docker Containers
 
-`环境：MacOS BigSur`
+`环境：MacOS Catalina`
 
-`机型：Mac mini (M1, 2020)`
+`机型：MacBook Air (Retina, 13-inch, 2019)`
 
 
 ##### 1. clone github repository
@@ -55,7 +55,7 @@ root@hadoop-master:~#
 ##### 7. run wordcount
 
 ```
-./run-wordcount.sh 3.3.1(Hadoop对应版本号,自行替换)
+./run-wordcount.sh 2.6.5(Hadoop对应版本号,自行替换)
 ```
 
 **output**
@@ -74,7 +74,7 @@ Hello    2
 ```
 ![alt tag](image2.png)
 ##### 8. WebUI
-- http://localhost:9870/
+- http://localhost:50070/
 - http://localhost:8088/
 
 

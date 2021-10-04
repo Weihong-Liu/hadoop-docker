@@ -22,10 +22,11 @@ RUN apt-get update && apt-get install -y openssh-server wget
 ADD resources/hadoop-3.3.1-aarch64.tar.gz /usr/local/hadoop
 ADD resources/jdk-8u301-linux-aarch64.tar.gz /usr/local/hadoop
 
-RUN mv /usr/local/hadoop/hadoop-3.3.1 /usr/local/hadoop/hadoop
+RUN mv /usr/local/hadoop/hadoop-* /usr/local/hadoop/hadoop && \
+    mv /usr/local/hadoop/jdk* /usr/local/hadoop/jdk1.8
 
 # set environment variable
-ENV JAVA_HOME=/usr/local/hadoop/jdk1.8.0_301
+ENV JAVA_HOME=/usr/local/hadoop/jdk1.8
 ENV JRE_HOME=$JAVA_HOME/jre
 ENV CLASSPATH=.:$CLASSPATH:$JAVA_HOME/lib:$JRE_HOME/lib
 ENV PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
