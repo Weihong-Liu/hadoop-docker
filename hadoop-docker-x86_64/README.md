@@ -11,11 +11,11 @@ git clone https://github.com/Weihong-Liu/hadoop-docker.git
 
 cd hadoop-docker/hadoop-docker-aarch64
 ```
-##### 2. download Hadoop v3.3.1 aarch64 to resource directory
+##### 2. download Hadoop v2.6.5 and JDK v1.8 to resource directory
 
-> [hadoop-3.3.1-aarch64](https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz) and [JDK1.8-aarch64](https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz)
+官网自行下载即可
 
-将下载得到的`hadoop-3.3.1-aarch64.tar.gz`和`jdk-8u301-linux-aarch64.tar.gz`文件放入`resources`文件夹中
+将下载得到的`hadoop-2.6.5.tar.gz`和`jdk-8u121-linux-x64.tar.gz`文件放入`resources`文件夹中
 ![alt tag](image1.png)
 ##### 3. build Dockerfile
 ```

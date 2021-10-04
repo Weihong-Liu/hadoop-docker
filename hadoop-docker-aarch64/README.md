@@ -11,7 +11,7 @@ git clone https://github.com/Weihong-Liu/hadoop-docker.git
 
 cd hadoop-docker/hadoop-docker-aarch64
 ```
-##### 2. download Hadoop v3.3.1 aarch64 to resource directory
+##### 2. download Hadoop v3.3.1 aarch64 and JDK v1.8 aarch64 to resource directory
 
 > [hadoop-3.3.1-aarch64](https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz) and [JDK1.8-aarch64](https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz)
 
