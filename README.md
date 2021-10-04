@@ -20,7 +20,7 @@ docker push puppets/hadoop_arm64:1.0
 ./start-container.sh # 创建容器（默认3个，hadoop-master、hadoop-slave1、hadoop-slave2）
 ```
 
-##### 文件说明
+## 文件说明
 
 `start-docker-hadoop.sh`启动容器并进入hadoop-master主机节点
 
