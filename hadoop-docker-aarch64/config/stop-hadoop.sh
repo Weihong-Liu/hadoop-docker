@@ -1,5 +1,5 @@
 #!/bin/bash
-$HADOOP_HOME/sbin/start-all.sh
+$HADOOP_HOME/sbin/stop-all.sh
 # echo -e "\n"
 
 # $HADOOP_HOME/sbin/stop-dfs.sh
