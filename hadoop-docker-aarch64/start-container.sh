@@ -11,6 +11,7 @@ sudo docker run -itd \
                 --net=hadoop \
                 -p 9870:9870 \
                 -p 8088:8088 \
+				-p 4040:4040 \
                 --name hadoop-master \
                 --hostname hadoop-master \
                 puppets/hadoop:1.0 &> /dev/null

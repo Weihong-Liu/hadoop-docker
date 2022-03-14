@@ -1,4 +1,4 @@
-## Run Hadoop v3.3.1 within Docker Containers
+## Run Hadoop v2.6.5 within Docker Containers
 
 `环境：MacOS Catalina`
 

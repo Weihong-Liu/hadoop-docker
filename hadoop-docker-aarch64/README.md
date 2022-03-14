@@ -13,9 +13,9 @@ cd hadoop-docker/hadoop-docker-aarch64
 ```
 ##### 2. download Hadoop v3.3.1 aarch64 and JDK v1.8 aarch64 to resource directory
 
-> [hadoop-3.3.1-aarch64](https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz) and [JDK1.8-aarch64](https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz)
+> [hadoop-3.3.1-aarch64](https://dlcdn.apache.org/hadoop/common/hadoop-3.3.1/hadoop-3.3.1-aarch64.tar.gz) and [JDK1.8-aarch64](https://gitee.com/Bric666/java/attach_files/803375/download/jdk-8u301-linux-aarch64.tar.gz) and [scala-2.12.14](https://downloads.lightbend.com/scala/2.12.14/scala-2.12.14.tgz) and [spark-3.2.1-bin-hadoop3.2](https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop3.2.tgz)
 
-将下载得到的`hadoop-3.3.1-aarch64.tar.gz`和`jdk-8u301-linux-aarch64.tar.gz`文件放入`resources`文件夹中
+将下载得到的`hadoop-3.3.1-aarch64.tar.gz`、`jdk-8u301-linux-aarch64.tar.gz`、`scala-2.12.14.tgz`和`spark-3.2.1-bin-hadoop3.2.tgz`文件放入`resources`文件夹中
 ![alt tag](image1.png)
 ##### 3. build Dockerfile
 ```

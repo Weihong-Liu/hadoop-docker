@@ -21,9 +21,13 @@ RUN apt-get update && apt-get install -y openssh-server wget
 
 ADD resources/hadoop-3.3.1-aarch64.tar.gz /usr/local/hadoop
 ADD resources/jdk-8u301-linux-aarch64.tar.gz /usr/local/hadoop
+ADD resources/scala-2.12.14.tgz /usr/local/hadoop
+ADD resources/spark-3.2.1-bin-hadoop3.2.tgz /usr/local/hadoop
 
 RUN mv /usr/local/hadoop/hadoop-* /usr/local/hadoop/hadoop && \
-    mv /usr/local/hadoop/jdk* /usr/local/hadoop/jdk1.8
+    mv /usr/local/hadoop/jdk* /usr/local/hadoop/jdk1.8 && \
+    mv /usr/local/hadoop/scala* /usr/local/hadoop/scala2.12 && \
+    mv /usr/local/hadoop/spark* /usr/local/hadoop/spark3.2.1
 
 # set environment variable
 ENV JAVA_HOME=/usr/local/hadoop/jdk1.8
@@ -33,6 +37,12 @@ ENV PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
 ENV HADOOP_HOME=/usr/local/hadoop/hadoop
 ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin 
+
+ENV SCALA_HOME=/usr/local/hadoop/scala2.12
+ENV PATH=$PATH:$SCALA_HOME/bin:$HADOOP_HOME/sbin 
+
+ENV SPARK_HOME=/usr/local/hadoop/spark3.2.1
+ENV PATH=$PATH:$SPARK_HOME/bin:$HADOOP_HOME/sbin 
 
 # ssh without key
 RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
