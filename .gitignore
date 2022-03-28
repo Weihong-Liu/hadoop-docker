@@ -2,3 +2,4 @@
 .DS_Store
 hadoop-docker-aarch64/resources/spark-3.2.1-bin-hadoop3.2.tgz
 hadoop-docker-aarch64/resources/scala-2.12.14.tgz
+hadoop-docker-aarch64/resources/hadoop-3.3.1-aarch64.tar.gz
