@@ -1,36 +1,40 @@
 <?xml version="1.0"?>
 <configuration>
+    <!-- Site specific YARN configuration properties -->
+    <!--指定resourcemanager所启动的服务器主机名-->
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>hadoop-slave2</value>
+    </property>
+    <!--指定mapreduce的shuffle-->
     <property>
         <name>yarn.nodemanager.aux-services</name>
         <value>mapreduce_shuffle</value>
     </property>
-    <property>
-        <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
-        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-    </property>
-    <property>
-        <name>yarn.resourcemanager.hostname</name>
-        <value>hadoop-master</value>
-    </property>
+    <!--指定resourcemanager的内部通讯地址-->
     <property>
         <name>yarn.resourcemanager.address</name>
-        <value>hadoop-master:8032</value>
+        <value>hadoop-slave2:8032</value>
     </property>
+    <!--指定scheduler的内部通讯地址-->
     <property>
         <name>yarn.resourcemanager.scheduler.address</name>
-        <value>hadoop-master:8030</value>
+        <value>hadoop-slave2:8030</value>
     </property>
+    <!--指定resource-tracker的内部通讯地址-->
     <property>
-        <name>yarn.resourcemanager.resourcetracker.address</name>
-        <value>hadoop-master:8031</value>
+        <name>yarn.resourcemanager.resource-tracker.address</name>
+        <value>hadoop-slave2:8031</value>
     </property>
+    <!--指定resourcemanager.admin的内部通讯地址-->
     <property>
         <name>yarn.resourcemanager.admin.address</name>
-        <value>hadoop-master:8033</value>
+        <value>hadoop-slave2:8033</value>
     </property>
+    <!--指定resourcemanager.webapp的ui监控地址-->
     <property>
         <name>yarn.resourcemanager.webapp.address</name>
-        <value>hadoop-master:8088</value>
+        <value>hadoop-slave2:8088</value>
     </property>
     <property>
         <name>yarn.nodemanager.resource.memory-mb</name>
