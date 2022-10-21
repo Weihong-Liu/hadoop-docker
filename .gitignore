@@ -3,3 +3,6 @@
 hadoop-docker-aarch64/resources/spark-3.2.1-bin-hadoop3.2.tgz
 hadoop-docker-aarch64/resources/scala-2.12.14.tgz
 hadoop-docker-aarch64/resources/hadoop-3.3.1-aarch64.tar.gz
+hadoop-docker-aarch64/DataProduct/logData.jar
+hadoop-docker-aarch64/resources/zeppelin-0.10.1-bin-all.tgz
+hadoop-docker-aarch64/resources/apache-hive-2.3.9-bin.tar.gz

@@ -1,14 +1,16 @@
 <?xml version="1.0"?>
 <configuration>
+<!--指定maoreduce运行框架-->
     <property>
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
     </property>
+<!--历史服务的通信地址-->
     <property>
         <name>mapreduce.jobhistory.address</name>
         <value>hadoop-master:10020</value>
     </property>
-
+<!--历史服务的web ui地址-->
     <property>
         <name>mapreduce.jobhistory.web.address</name>
         <value>hadoop-master:19888</value>

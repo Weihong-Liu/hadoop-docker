@@ -1,33 +1,40 @@
 <?xml version="1.0"?>
 <configuration>
-    <property>
-        <name>dfs.namenode.name.dir</name>
-        <value>file:/root/hdfs/namenode</value>
-        <description>NameNode directory for namespace and transaction logs storage.</description>
-    </property>
-    <property>
-        <name>dfs.datanode.data.dir</name>
-        <value>file:/root/hdfs/datanode</value>
-        <description>DataNode directory</description>
-    </property>
-    <property>
-        <name>dfs.replication</name>
-        <value>2</value>
-    </property>
-    <!-- <property>
-        <name>dfs.namenode.http.address</name>
-        <value>hadoop-master:50070</value>
-    </property> -->
-    <!-- <property>
-        <name>dfs.namenode.secondary.http-address</name>
-        <value>hadoop-master:50090</value>
-    </property>
-    <property>
-        <name>dfs.namenode.secondary.https-address</name>
-        <value>hadoop-master:50091</value>
-    </property>
-    <property>
-        <name>dfs.webhdfs.enabled</name>
-        <value>true</value>
-    </property> -->
+	<!--配置副本数-->
+	<property>
+		<name>dfs.replication</name>
+		<value>3</value>
+	</property>
+	<!--hdfs的元数据存储位置-->
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>file:/root/hdfs/namenode</value>
+		<description>NameNode directory for namespace and transaction logs storage.</description>
+	</property>
+	<!--hdfs的数据存储位置-->
+	<property>
+		<name>dfs.datanode.data.dir</name>
+		<value>file:/root/hdfs/datanode</value>
+		<description>DataNode directory</description>
+	</property>
+	<!--hdfs的namenode的web ui 地址-->
+	<!-- <property>
+		<name>dfs.http.address</name>
+		<value>bigdatam10:50070</value>
+	</property> -->
+	<!--hdfs的snn的web ui 地址-->
+	<!-- <property>
+		<name>dfs.secondary.http.address</name>
+		<value>bigdatas30:50090</value>
+	</property> -->
+	<!--是否开启web操作hdfs-->
+	<property>
+		<name>dfs.webhdfs.enabled</name>
+		<value>true</value>
+	</property>
+	<!--是否启用hdfs权限（acl）-->
+	<property>
+		<name>dfs.permissions</name>
+		<value>false</value>
+	</property>
 </configuration>

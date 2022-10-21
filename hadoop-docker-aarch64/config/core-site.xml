@@ -6,11 +6,21 @@
     </property>
     <property>
         <name>io.file.buffer.size</name>
-        <value>131072</value>
+        <value>4096</value>
     </property>
 
     <property>
         <name>hadoop.tmp.dir</name>
         <value>/usr/local/hadoop/hadoop/tmp</value>
+    </property>
+
+    <!-- 注意：使用什么账号登录，则proxyuser后面的字段就用什么，例如root -->
+    <property>
+        <name>hadoop.proxyuser.root.hosts</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.root.groups</name>
+        <value>*</value>
     </property>
 </configuration>
